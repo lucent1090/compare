@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import List from './List'
 import { intersectionWith, isEqual } from 'lodash'
 
@@ -6,6 +7,30 @@ const _ = {
   intersectionWith,
   isEqual,
 }
+
+const AppWrapper = styled.div`
+  margin: 1rem 1rem 1rem 1rem;
+`
+
+const ResultArea = styled.div`
+  margin: 0 auto;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+  box-sizing : border-box;
+  background-color: #BFD3C1;
+  width: calc(100% - 2rem);
+  font-size: 1.5rem;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+`
+
+const UlWrapper = styled.ul`
+`
+
+const LiWrapper = styled.li`
+  margin: 0.3rem;
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -45,17 +70,19 @@ class App extends React.Component {
     const { compareCols, interObjects } = this.state
     const result = interObjects.map((val, idx) => {
       return (
-        <li key={idx}>{val}</li>
+        <LiWrapper key={idx}>{val}</LiWrapper>
       )
     })
 
     return (
-      <div>
+      <AppWrapper>
         {compareCols}
-        <ul>
-          {result}
-        </ul>
-      </div>
+        <ResultArea>
+          <UlWrapper>
+            {result}
+          </UlWrapper>
+        </ResultArea>
+      </AppWrapper>
     )
   }
 }
